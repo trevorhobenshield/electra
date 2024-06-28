@@ -1,6 +1,6 @@
 [project]
 name = "electra"
-version = '0.0.2'
+version = '0.0.3'
 description = "Electra"
 dynamic = ["readme"]
 requires-python = ">=3.10.10"
@@ -31,6 +31,7 @@ dependencies = [
     "aiofiles",
     "orjson",
     "tqdm",
+    "ruff",
 ]
 
 [project.urls]
@@ -41,9 +42,7 @@ requires = ["hatchling", "hatch-fancy-pypi-readme"]
 build-backend = "hatchling.build"
 
 [tool.hatch.build]
-include = [
-    "electra/*",
-]
+include = ["electra/*"]
 
 [tool.hatch.build.targets.wheel]
 packages = ["electra"]
@@ -58,3 +57,51 @@ path = "README.md"
 # replace relative links with absolute links
 pattern = '\[(.+?)\]\(((?!https?://)\S+?)\)'
 replacement = '[\1](https://github.com/trevorhobenshield/electra/tree/main/\g<2>)'
+
+[tool.ruff]
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".ipynb_checkpoints",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pyenv",
+    ".pytest_cache",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    ".vscode",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "site-packages",
+    "venv",
+]
+
+line-length = 140
+indent-width = 4
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F"]
+ignore = []
+fixable = ["ALL"]
+unfixable = []
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+docstring-code-format = false
+docstring-code-line-length = "dynamic"
